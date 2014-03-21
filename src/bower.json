@@ -1,0 +1,24 @@
+{
+  "name": "rego",
+  "description": "Registration system for events, camps, conferences that kind of thing.",
+  "main": "index.html",
+  "authors": [
+    "SayGo Web"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendor_bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.x",
+    "angular-route": "~1.2.x",
+    "angular-ui-bootstrap-bower": "~0.10.0",
+    "bootstrap-css": "3.x",
+    "font-awesome": "~4.0.x"
+  }
+}

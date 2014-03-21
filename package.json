@@ -1,0 +1,23 @@
+{
+  "name": "rego",
+  "version": "0.1.0",
+  "description": "Registration system for events, camps, conferences that kind of thing.",
+  "main": "htdocs/index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cambell-prince/rego.git"
+  },
+  "author": "Cambell Prince",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cambell-prince/rego/issues"
+  },
+  "devDependencies": {
+    "gulp-util": "~2.2.14",
+    "gulp": "~3.5.2",
+    "gulp-exec": "~1.0.4"
+  }
+}

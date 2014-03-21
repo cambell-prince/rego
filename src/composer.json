@@ -1,0 +1,14 @@
+{
+	"name": "sgw/rego",
+	"description": "Registration system for events, camps, conferences that kind of thing.",
+	"license": "MIT",
+	"require": {
+		"silex/silex": "1.2.*@dev",
+		"twig/twig": "1.15.*@dev",
+		"swiftmailer/swiftmailer": "5.1.*@dev",
+		"doctrine/dbal": "2.5.*@dev"
+	},
+	"autoload": {
+		"psr-0": {"SayGo\\": "./"}
+	}
+}
