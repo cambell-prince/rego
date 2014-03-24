@@ -1,2 +1,28 @@
-
-hi there
+<h1>Registration Form</h1>
+<form name="form" class="well" data-ng-controller="RegistrationCtrl">
+	<div class="form-group">
+		<label for="emailAddress">Email address</label><i class="fa fa-check" data-ng-hide="form.emailAddress.$invalid"></i>
+		<input data-ng-model="registrant.email" required type="email" class="form-control" name="emailAddress" placeholder="Enter email" />
+	</div>
+	<div class="form-group">
+		<label for="name">Your name</label><i class="fa fa-check" data-ng-hide="form.name.$invalid"></i>
+		<input data-ng-model="registrant.name" required type="text" class="form-control" name="name" placeholder="Enter your name" />
+	</div>
+	<button data-ng-click="addAttendee()" class="btn pull-right">Add a Camper</button>
+	<h3>Camper Details</h3>
+	<div data-ng-repeat="attendee in registrant.attendees" class="form-inline form-group"> <!-- Attendees -->
+		<input data-ng-model="attendee.name" required type="text", class="form-control" id="" placeholder="Name"/>
+		<input data-ng-model="attendee.age" required type="text", class="form-control" id="" placeholder="Age" size="2" />
+		<select data-ng-model="attendee.gender" data-ng-options="o.id as o.label for o in genders" required id="gender" class="form-control">
+			<option value="" disabled selected style="display:none">Select Gender</option>
+		</select>
+		<button data-ng-click="removeAttendee($index)" class="btn btn-link"><i class="fa fa-times fa-lg"></i> Delete</button>
+	</div>
+	<div class="form-group">
+		<label for="paymentMethod">How do you want to pay?</label><i class="fa fa-check" data-ng-hide="form.paymentMethod.$invalid"></i>
+		<select data-ng-model="registrant.paymentMethod" data-ng-options="o.id as o.label for o in paymentMethods" required name="paymentMethod" class="form-control">
+			<option value="" disabled selected style="display:none">Select Payment Method</option>
+		</select>
+	</div>
+	<button data-ng-disabled="form.$invalid" type="submit" class="btn btn-primary">Register</button>
+</form>
