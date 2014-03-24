@@ -10,7 +10,6 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var clean = require('gulp-clean');
 var concat = require('gulp-concat');
-var notify = require('gulp-notify');
 var cache = require('gulp-cache');
 
 var livereload = require('gulp-livereload');
@@ -24,7 +23,6 @@ gulp.task('default', function() {
 gulp.task('script-dev', function() {
 	return gulp.src('src/client/**/*')
 		.pipe(livereload(server));
-//		.pipe(notify('client reload'));
 });
 
 gulp.task('css-dev', function() {
