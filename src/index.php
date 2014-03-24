@@ -18,6 +18,7 @@ function getScripts() {
 			}
 		}
 	}
+	$scripts[] = "http://rego.local:35729/livereload.js?snipver=1";
 	return $scripts;
 }
 
