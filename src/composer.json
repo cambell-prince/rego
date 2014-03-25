@@ -6,9 +6,12 @@
 		"silex/silex": "1.2.*@dev",
 		"twig/twig": "1.15.*@dev",
 		"swiftmailer/swiftmailer": "5.1.*@dev",
-		"doctrine/dbal": "2.5.*@dev"
+		"doctrine/dbal": "2.5.*@dev",
+		"phpunit/phpunit": "4.0.*"
 	},
 	"autoload": {
-		"psr-0": {"SayGo\\": "./"}
+		"psr-0": {
+			"": "./"
+		}
 	}
 }
