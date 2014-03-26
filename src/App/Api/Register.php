@@ -10,7 +10,7 @@ class Register
 {
 	public function getAll(Request $request, Application $app) {
 		$result = $app['db']->fetchAll("SELECT * FROM registrant");
-		return new JsonResponse($result);
+		return new JsonResponse(array('result' => $result));
 	}
 	
 	public function getOne(Request $request, Application $app, $id) {
@@ -30,9 +30,9 @@ class Register
 	}
 	
 	public function create(Request $request, Application $app) {
-		$data = $request->getContent();
+		$data = $request->request->all();
 		// Fiddle the attendees
-		$attendees = $data['attendees'];
+		$attendees = array_key_exists('attendees', $data) && is_array($data['attendees']) ? $data['attendees'] : array();
 		unset($data['attendees']);
 		$app['db']->insert('registrant', $data);
 		$id = $app['db']->lastInsertId();

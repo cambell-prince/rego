@@ -16,8 +16,28 @@ var livereload = require('gulp-livereload');
 var lr = require('tiny-lr');
 var server = lr();
 
+var phpunit = require('gulp-phpunit');
+var phpunit_command = 'src/vendor/phpunit/phpunit/phpunit tests';
+
 gulp.task('default', function() {
   // place code for your default task here
+});
+
+
+// PHP unit tests
+gulp.task('test-php', function() {
+	var options = {
+		ignoreError: true,
+		debug: false
+	}
+	return gulp.src('tests/*Test.php')
+		.pipe(phpunit(phpunit_command, options));
+});
+
+
+gulp.task('watch-test-php', function() {
+	gulp.watch(['tests/**/*.php', 'src/App/**/*.php'], ['test-php']);
+//	gulp.watch('src/**/*.php', ['test-php']);
 });
 
 gulp.task('script-dev', function() {
