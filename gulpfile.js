@@ -37,7 +37,6 @@ gulp.task('test-php', function() {
 
 gulp.task('watch-test-php', function() {
 	gulp.watch(['tests/**/*.php', 'src/App/**/*.php'], ['test-php']);
-//	gulp.watch('src/**/*.php', ['test-php']);
 });
 
 gulp.task('script-dev', function() {

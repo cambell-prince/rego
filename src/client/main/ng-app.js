@@ -3,8 +3,10 @@
 // Declare app level module which depends on filters, and services
 angular.module('sgwRego', [
 	   'ngRoute',
+	   'ngResource',
 	   'ui.bootstrap',
-	   'sgw.registration'
+	   'rego.registration',
+	   'rego.service'
     ])
 	.config(['$routeProvider', function($routeProvider) {
 	    $routeProvider.when(

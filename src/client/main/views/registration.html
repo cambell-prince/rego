@@ -1,5 +1,5 @@
 <h1>Registration Form</h1>
-<form name="form" class="well" data-ng-controller="RegistrationCtrl">
+<form name="form" class="well" data-ng-controller="RegistrationCtrl" data-ng-submit="submit()">
 	<div class="form-group">
 		<label for="emailAddress">Email address</label><i class="fa fa-check" data-ng-hide="form.emailAddress.$invalid"></i>
 		<input data-ng-model="registrant.email" required type="email" class="form-control" name="emailAddress" placeholder="Enter email" />
@@ -19,8 +19,8 @@
 		<button data-ng-click="removeAttendee($index)" class="btn btn-link"><i class="fa fa-times fa-lg"></i> Delete</button>
 	</div>
 	<div class="form-group">
-		<label for="paymentMethod">How do you want to pay?</label><i class="fa fa-check" data-ng-hide="form.paymentMethod.$invalid"></i>
-		<select data-ng-model="registrant.paymentMethod" data-ng-options="o.id as o.label for o in paymentMethods" required name="paymentMethod" class="form-control">
+		<label for="payMethod">How do you want to pay?</label><i class="fa fa-check" data-ng-hide="form.payMethod.$invalid"></i>
+		<select data-ng-model="registrant.payMethod" data-ng-options="o.id as o.label for o in payMethods" required name="payMethod" class="form-control">
 			<option value="" disabled selected style="display:none">Select Payment Method</option>
 		</select>
 	</div>

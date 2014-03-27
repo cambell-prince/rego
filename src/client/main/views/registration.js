@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('sgw.registration', [])
-	.controller('RegistrationCtrl', ['$scope', function($scope) {
+angular.module('rego.registration', ['rego.service'])
+	.controller('RegistrationCtrl', ['$scope', 'registrantService', function($scope, registrantService) {
 //		var data = {
 //			email: 'me@example.com',
 //			name: 'Some Name',
@@ -22,7 +22,7 @@ angular.module('sgw.registration', [])
 		    { id: 'f', label: 'Female'}
 		];
 		
-		$scope.paymentMethods = [
+		$scope.payMethods = [
 		    { id: 'ib', label: 'Internet Banking'},
 		    { id: 'cc', label: 'Credit Card'},
 		    { id: 'py', label: 'Pay at Church'}
@@ -48,6 +48,10 @@ angular.module('sgw.registration', [])
 		$scope.removeAttendee = function($index) {
 			$scope.registrant.attendees.splice($index, 1);
 		};
+		
+		$scope.submit = function() {
+			registrantService.save($scope.registrant);
+		}
 		
 		reset();
 		
