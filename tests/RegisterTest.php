@@ -71,12 +71,40 @@ class RegisterTest extends PHPUnit_Framework_TestCase
 // 		var_dump("getOne", $result);
 		$this->assertEquals(1, count($result));
 		$result = $result['result'];
+		$this->assertEquals('email@example.com', $result['email']);
+		$this->assertEquals('Some Name', $result['name']);
 		$this->assertArrayHasKey('attendees', $result);
 		$this->assertEquals(2, count($result['attendees']));
 		$this->assertEquals('Attendee 1', $result['attendees'][0]['name']);
+		$this->assertNotNull($result['attendees'][0]['id']);
 		$this->assertEquals('Attendee 2', $result['attendees'][1]['name']);
+		$this->assertNotNull($result['attendees'][1]['id']);
 		
 		// Update
+		$result['email'] = 'other@example.com';
+		$result['name'] = 'Other Name';
+		$result['attendees'][1]['name'] = 'Other 2';
+		$result['attendees'][]['name'] = 'Other 3';
+		array_splice($result['attendees'], 0, 1);
+		$json = json_encode($result);
+		$response = $api->update($this->makeRequest($json), $app, $result['id']);
+		$result = json_decode($response->getContent(), true);
+// 		var_dump($result);
+		
+		$response = $api->getOne($this->makeRequest(''), $app, $id);
+		$result = json_decode($response->getContent(), true);
+// 		var_dump("getOne", $result);
+
+		$this->assertEquals(1, count($result));
+		$result = $result['result'];
+		$this->assertEquals('other@example.com', $result['email']);
+		$this->assertEquals('Other Name', $result['name']);
+		$this->assertArrayHasKey('attendees', $result);
+		$this->assertEquals(2, count($result['attendees']));
+		$this->assertEquals('Other 2', $result['attendees'][0]['name']);
+		$this->assertNotNull($result['attendees'][0]['id']);
+		$this->assertEquals('Other 3', $result['attendees'][1]['name']);
+		$this->assertNotNull($result['attendees'][1]['id']);
 		
 		// Delete
 		$response = $api->delete($this->makeRequest(''), $app, $id);
