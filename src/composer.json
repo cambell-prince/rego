@@ -5,9 +5,11 @@
 	"require": {
 		"silex/silex": "1.2.*@dev",
 		"twig/twig": "1.15.*@dev",
+		"symfony/twig-bridge": "2.5.*@dev",
 		"swiftmailer/swiftmailer": "5.1.*@dev",
 		"doctrine/dbal": "2.5.*@dev",
-		"phpunit/phpunit": "4.0.*"
+		"phpunit/phpunit": "4.0.*",
+		"symfony/security": "~2.4"
 	},
 	"autoload": {
 		"psr-0": {
