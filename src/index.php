@@ -1,4 +1,6 @@
 <?php 
+use Silex\Provider\UrlGeneratorServiceProvider;
+
 require_once(__DIR__.'/vendor/autoload.php'); 
 require_once('Config.php');
 
@@ -9,11 +11,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 // use Carbon\Carbon;
 
-function getScripts() {
+function getScripts($appName) {
+	$scripts = array();
+	
+	$scripts[] = "/vendor_bower/angular/angular.js";
+	$scripts[] = "/vendor_bower/angular-route/angular-route.js";
+	$scripts[] = "/vendor_bower/angular-resource/angular-resource.js";
+	$scripts[] = "/vendor_bower/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js";
+	
 	$it = new RecursiveDirectoryIterator('client');
 	$it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::SELF_FIRST);
 
-	$scripts = array();
 	foreach ($it as $file) {
 		if ($file->isFile()) {
 			$ext = $file->getExtension();
@@ -58,7 +66,9 @@ $app->before(function (Request $request) {
 	}
 });
 
+
 // Service for Twig
+$app->register(new UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
 	'twig.path' => __DIR__ . '/views',
 ));
@@ -73,13 +83,37 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 		)
 ));
 
+// Service for Session
+$app->register(new Silex\Provider\SessionServiceProvider());
+
+// Service for Security
+$app->register(new Silex\Provider\SecurityServiceProvider(), array(
+	'security.firewalls' => array(
+		'admin' => array(
+			'pattern' => '^/admin',
+			'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
+			'logout' => array('logout_path' => '/admin/logout'),
+			'users' => $app->share(function() use ($app) {
+				return new App\UserProvider($app['db']);
+			}),			
+		)
+	)
+));
+
 
 // Routes
-$app->get('/login', function() use($app) {
-	return $app['twig']->render('login.twig.html');
+$app->get('/login/', function(Request $request) use($app) {
+	return $app['twig']->render('login.twig.html', array(
+		'error'         => $app['security.last_error']($request),
+		'last_username' => $app['session']->get('_security.last_username'),
+		'scripts'       => '', //getScripts('login'),
+	));
+});
+$app->get('/admin/', function() use($app) {
+	return $app['twig']->render('admin.twig.html', array('scripts' => getScripts('admin') ));
 });
 $app->get('/', function() use($app) {
-	return $app['twig']->render('main.twig.html', array('scripts' => getScripts() ));
+	return $app['twig']->render('main.twig.html', array('scripts' => getScripts('main') ));
 });
 
 $app->mount('/api', new ApiProvider());

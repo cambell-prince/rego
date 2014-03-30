@@ -3,19 +3,14 @@
 <head>
 	<meta charset="utf-8" />
 	<title>{% block title 'Default Title' %}</title>
-	<link rel="stylesheet" href="vendor_bower/bootstrap-css/css/bootstrap.css" />
-	<link rel="stylesheet" href="vendor_bower/font-awesome/css/font-awesome.css">
-	<link rel="stylesheet" href="assets/site.css">
+	<link rel="stylesheet" href="/vendor_bower/bootstrap-css/css/bootstrap.css" />
+	<link rel="stylesheet" href="/vendor_bower/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 {% block body %}
 Default Body
 {% endblock body %}
-	<script src="vendor_bower/angular/angular.js"></script>
-	<script src="vendor_bower/angular-route/angular-route.js"></script>
-	<script src="vendor_bower/angular-resource/angular-resource.js"></script>
-	<script src="vendor_bower/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
-	<!--  Add other scripts in here via block  -->
 {% block scripts %}
 	{% for script in scripts %}
 	<script src="{{script}}"></script>
