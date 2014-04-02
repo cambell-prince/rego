@@ -1,0 +1,26 @@
+{
+  "name": "sil-ng-listview",
+  "description": "A list view directive for AngularJS that adds paging support to tabular data.",
+  "main": "listview.js",
+  "authors": [
+    "SIL"
+  ],
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "angular": "~1.2.x",
+    "angular-ui-bootstrap-bower": "~0.10.0",
+    "bootstrap-css": "3.x"
+  },
+  "version": "2.0.1",
+  "homepage": "https://github.com/sillsdev/web-ng-listview-bower",
+  "_release": "2.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.0.1",
+    "commit": "e38ad4797e18ede0b25c8369da515c6c9d926bb3"
+  },
+  "_source": "git://github.com/sillsdev/web-ng-listview-bower.git",
+  "_target": "~2.0.0",
+  "_originalSource": "sil-ng-listview"
+}
